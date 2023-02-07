@@ -1,26 +1,46 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+<script setup lang="ts">
+import axios from 'axios'
+import { ref } from "vue";
+
+const characters = ref();
+
+axios
+  .get("https://pokeapi.co/api/v2/pokemon/")
+  .then(function (response) {
+    characters.value = response.data.results;
+    console.log(characters.value);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <nav class="navbar navbar-expand-sm nvabar-dark bg-dark" style="margin-left: 0rem">
+    <RouterLink to="/" style="text-decoration: none; color: #fff">Home</RouterLink>
+  </nav>
+  <div class="container">
+    <img style="height: 100px; margin-top: 0.5em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png" alt="Logo image" />
+    <h1 class="page-header">Poekemon API</h1>
+    <table>
+      <thead>
+        <th>Name</th>
+      </thead>
+      <tbody>
+        <tr v-for="(character, index) in characters" :key="index">
+          <td>{{ character.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <RouterView />
 </template>
 
 <style scoped>
+.container img{
+  border: 1px solid red;
+  
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -77,7 +97,6 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
