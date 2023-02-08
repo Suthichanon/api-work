@@ -19,7 +19,7 @@ axios
   <nav class="navbar navbar-expand-sm nvabar-dark bg-dark" style="margin-left: 0rem">
     <RouterLink to="/" style="text-decoration: none; color: #fff">Home</RouterLink>
   </nav>
-  <div class="container" style="height: 100vh;">
+ <center> <div class="container" style="height: 100vh;">
     <img style="height: 100px; margin-top: 0.5em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png" alt="Logo image" />
     <h1 class="page-header">Poekemon API</h1>
     <table>
@@ -32,12 +32,13 @@ axios
         </tr>
       </tbody>
     </table>
-  </div>
+  </div></center>
   <RouterView />
 </template>
 
 <style scoped>
 .container{
+  justify-content: center;
   background-color: #cacaca;
   
   max-height: 100vh;
@@ -47,6 +48,7 @@ axios
   background-color: #00000017;
   
 }
+
 header {
   line-height: 1.5;
   max-height: 5vh;
